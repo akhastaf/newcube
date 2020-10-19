@@ -134,7 +134,7 @@ void treat_c(char *s)
 		write_exit("Error\nColors are invalid");
 	color.r <<= 16;
 	color.g <<= 8;
-	g_game.ceeling = color.r + color.g + color.b;
+	g_game.ceil = color.r + color.g + color.b;
 	g_tkn.c += 1;
 	if (g_tkn.c == 2)
 		write_exit("Error\nMore than one C detected in <cub> file");

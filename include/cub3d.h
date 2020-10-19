@@ -2,6 +2,7 @@
 # define CUB3D_H
 
 #include <unistd.h>
+#include "mlx.h"
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
@@ -13,10 +14,25 @@
 #define N_EA  2
 #define N_SO  3
 
-#define A_NO  0
-#define A_WE  1
-#define N_EA  2
-#define N_SO  3
+# define SCALE 0.2
+
+# define EVENT_KEYDOWN 2
+# define EVENT_KEYUP 3
+# define EVENT_EXIT 17
+# define EXIT_SUCCESS 0
+# define KEY_A 0
+# define KEY_S 1
+# define KEY_D 2
+# define KEY_W 13
+# define KEY_LEFT 123
+# define KEY_RIGHT 124
+# define KEY_DOWN 125
+# define KEY_UP 126
+# define ESC_KEY 53
+
+# define ANGLE_S    (8 * (M_PI / 180))
+# define ROT_ANGLE   (8 * (M_PI / 180))
+# define SPEED 10
 
 # define TILE_SIZE 64
 
@@ -24,6 +40,41 @@
 #define IS_ZSP(x) (x == 'N' || x == 'W' || x == 'S' || x == 'E' || x == '2')
 #define IS_P(x) (x == 'N' || x == 'W' || x == 'S' || x == 'E')
 
+typedef struct s_pos
+{
+    float   x;
+    float   y;
+}   t_pos;
+
+typedef struct s_rec
+{
+    t_pos pos;
+    t_pos size;
+    int color;
+} t_rec;
+
+typedef struct s_line
+{
+    t_pos pos;
+    float alpha;
+    float   d;
+    int color;
+}   t_line;
+
+typedef struct s_cercle
+{
+    t_pos pos;
+    float   r;
+    int color;
+}   t_cercle;
+
+typedef struct  s_img {
+    void        *img;
+    char        *addr;
+    int         bpp;
+    int         length;
+    int         e;
+}    t_img;
 
 typedef struct	s_tkn
 {
@@ -46,11 +97,6 @@ typedef     struct s_color
 }              t_color;
 
 
-typedef struct s_pos
-{
-    float   x;
-    float   y;
-}   t_pos;
 
 
 typedef struct s_map
@@ -86,16 +132,12 @@ typedef struct  s_ray
 
 typedef struct s_tex
 {
-    void    *ptr;
-    int		*addr;
+    t_img   img;
     char    *path;
     int     w;
     int     h;
     //float   offset_x;
     //float   offset_y;
-	int		bpp;
-	int		line_length;
-	int		endian;
 }       t_tex;
 
 typedef struct s_player 
@@ -118,8 +160,6 @@ typedef struct s_game
 	t_map   map;
 	//	Textures
 	t_tex   tex[4];
-    // Rays
-    t_ray   *ray;
     // Sprites
     char    *s_path;
     t_sp    sp[100];
@@ -129,11 +169,14 @@ typedef struct s_game
 	int win_h;
 	// Colors
 	int floor;
-	int ceeling;
+	int ceil;
 }   t_game;
 
 t_player    g_player;
 t_game      g_game;
+t_img       g_img;
+t_ray       *g_rays;
+
 t_tkn       g_tkn;
 
 // Load file
@@ -159,6 +202,18 @@ void verify_map();
 void verify_player();
 void get_player();
 
+// Game
+void    init(void);
+int     exit_game();
+void    process_input(void);
+void    setup();
+void    update();
+void    render();
+int     main_loop();
+
+int key_down(int key);
+int key_up(int key);
+
 // Utils
 size_t	ft_strlen(const char *s);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
@@ -171,6 +226,23 @@ int     bigger(int a, int b);
 void    skip_spaces(char **s);
 int     spaces(char *s);
 void	skip_digit(char **s);
+t_pos    set_pos(t_pos *pos, float x, float y);
+t_pos    copy_pos(t_pos *pos, t_pos s);
+
+
+// Draw
+void            my_mlx_pixel_put(int x, int y, int color);
+void    draw_rect(t_rec rec);
+void    draw_line(t_line line);
+void    draw_cercle(t_cercle cercle);
+
+// Player
+void    render_player();
+void    move_player();
+
+// Map
+void    render_map();
+int     hit_wall(t_pos pos);
 
 
 int		gnl(int fd, char **line);
