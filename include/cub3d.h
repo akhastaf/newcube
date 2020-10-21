@@ -9,10 +9,15 @@
 #include <math.h>
 #include <fcntl.h>
 
+# define MAX_INT 2147483647
+
 #define N_NO  0
 #define N_WE  1
 #define N_EA  2
 #define N_SO  3
+
+#define FALSE 0
+# define TRUE 1
 
 # define SCALE 0.2
 
@@ -31,8 +36,8 @@
 # define ESC_KEY 53
 
 # define ANGLE_S    (8 * (M_PI / 180))
-# define ROT_ANGLE   (8 * (M_PI / 180))
-# define SPEED 10
+# define SPEED 8
+# define FOV (60 * (M_PI / 180))
 
 # define TILE_SIZE 64
 
@@ -114,21 +119,25 @@ typedef struct	s_sp
 	float		distance;
 }				t_sp;
 
+typedef struct  s_inter
+{
+    t_pos   next;
+    int     hit;
+    t_pos   wall;
+    float   dist;
+}               t_inter;
+
 typedef struct  s_ray
 {
-    t_pos   pos;
     float   angle;
-    float   wall_hitx;
-    float   wall_hity;
-    float   distance;
-    int     wall_hitcontent;
-    int     vertical_hit;
-    int     facing_down;
-    int     facing_up;
-    int     facing_right;
-    int     facing_left;
-}   t_ray;
-
+    t_pos   wall_hit;
+    float   dist;
+    int     vert_hit;
+    int     ray_d;
+    int     ray_up;
+    int     ray_r;
+    int     ray_l;
+}               t_ray;
 
 typedef struct s_tex
 {
@@ -144,10 +153,10 @@ typedef struct s_player
 {
     t_pos pos;
     float rotation_angle;
-    float move_speed;
-    float angle_speed;
     int turn_direction;
     int walk_direction;
+    float move_speed;
+    float angle_speed;
 }   t_player;
 
 typedef struct s_game
@@ -176,6 +185,8 @@ t_player    g_player;
 t_game      g_game;
 t_img       g_img;
 t_ray       *g_rays;
+t_inter     g_horz;
+t_inter     g_vert;
 
 t_tkn       g_tkn;
 
@@ -228,6 +239,9 @@ int     spaces(char *s);
 void	skip_digit(char **s);
 t_pos    set_pos(t_pos *pos, float x, float y);
 t_pos    copy_pos(t_pos *pos, t_pos s);
+int     is_wall_at(t_pos pos);
+float normalize_angle(float angle);
+float distance(float x1, float y1, float x2, float y2);
 
 
 // Draw
@@ -243,6 +257,20 @@ void    move_player();
 // Map
 void    render_map();
 int     hit_wall(t_pos pos);
+
+// Ray
+void    init_inter(t_inter *inter);
+void    hor_inter(t_inter *horz, int i);
+void    ver_inter(t_inter *vert, int i);
+// void    ray_fill(t_inter *horz, t_inter *vert, int i);
+void    cast_ray(int id);
+// void    cast_vert(int id);
+// void    cast_horz(int id);
+
+// void cast_ray(int id);
+void    cast_all_rays();
+void    render_rays();
+
 
 
 int		gnl(int fd, char **line);

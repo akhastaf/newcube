@@ -61,7 +61,7 @@ void    render()
 {
     //wall(game);
     render_map();
-    //render_rays(game);
+    render_rays();
     render_player();
     //update_sp_d();
     //sprites();
@@ -70,7 +70,7 @@ void    render()
 void    update()
 {
     move_player();
-    //cast_all_rays();
+    cast_all_rays();
 }
 
 int    main_loop()

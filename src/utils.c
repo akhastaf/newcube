@@ -157,3 +157,16 @@ t_pos    copy_pos(t_pos *pos, t_pos s)
     pos->y = s.y;
     return *pos;
 }
+
+float normalize_angle(float angle)
+{
+    angle = remainderf(angle, 2 * M_PI);
+    if (angle < 0)
+         angle += 2 * M_PI; 
+    return (angle);
+}
+
+float distance(float x1, float y1, float x2, float y2)
+{
+    return (hypotf((x2 - x1), (y2 - y1)));
+}
