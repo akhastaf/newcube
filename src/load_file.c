@@ -346,16 +346,14 @@ void load_file(char *path)
 	int fd;
 	char *line;
 	int r;
-
-    if (!ft_strnstr(path, ".cup", ft_strlen(path)))
+	
+    if (!ft_strnstr(path, ".cub", ft_strlen(path)))
         write_exit("Error\nThe filetype isn't <cub>");
     if ((fd = open(path, O_RDONLY)) == -1)
 		write_exit("Error\nFile doesn't exist");
 	g_game.map.map = 0;
 	while ( (r = gnl(fd, &line)) >= 0)
 	{
-		
-		
 		if (!empty_line(line))
 			treat_element(line);
 		free(line);

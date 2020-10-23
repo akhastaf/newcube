@@ -122,6 +122,8 @@ typedef struct	s_sp
 typedef struct  s_inter
 {
     t_pos   next;
+    t_pos   step;
+    t_pos   inter;
     int     hit;
     t_pos   wall;
     float   dist;
@@ -145,8 +147,8 @@ typedef struct s_tex
     char    *path;
     int     w;
     int     h;
-    //float   offset_x;
-    //float   offset_y;
+    float   offset_x;
+    float   offset_y;
 }       t_tex;
 
 typedef struct s_player 
@@ -257,6 +259,7 @@ void    move_player();
 // Map
 void    render_map();
 int     hit_wall(t_pos pos);
+int     is_wall(float x, float y);
 
 // Ray
 void    init_inter(t_inter *inter);
@@ -264,13 +267,24 @@ void    hor_inter(t_inter *horz, int i);
 void    ver_inter(t_inter *vert, int i);
 // void    ray_fill(t_inter *horz, t_inter *vert, int i);
 void    cast_ray(int id);
-// void    cast_vert(int id);
-// void    cast_horz(int id);
+void    cast_vert(int id);
+void    cast_horz(int id);
+void    init_horz(int id);
+void    init_vert(int id);
 
 // void cast_ray(int id);
 void    cast_all_rays();
 void    render_rays();
 
+
+// Wall
+void    render_wall();
+
+// Textures
+void    set_text();
+void load_texture();
+int  get_text_color(t_tex tex, int x, int y);
+int     get_texture(int i);
 
 
 int		gnl(int fd, char **line);

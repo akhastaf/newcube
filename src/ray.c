@@ -51,6 +51,7 @@
 //     int horz_wall_content = 0;
 //     float horz_distance;
 //     float vert_distance;
+//     int check;
     
 //     // printf("cast ray");
 //     g_rays[id].angle = normalize_angle(g_rays[id].angle);
@@ -80,10 +81,11 @@
     
 //     next_horz.x = xintercept;
 //     next_horz.y = yintercept;
+//     check = facing_down ? 0 : -1;
     
 //     while ((next_horz.x > 0 && next_horz.x < g_game.win_w) && (next_horz.y > 0 && next_horz.y < g_game.win_h))
 //     {
-//         if (hit_wall(next_horz))
+//         if (is_wall(next_horz.x , next_horz.y + check))
 //         {
 //             horz_hit = 1;
 //             horz_wall_hitx = next_horz.x;
@@ -123,10 +125,12 @@
     
 //     next_vert.x = xintercept;
 //     next_vert.y = yintercept;
+
+//     check = facing_right ? 0 : -1;
     
 //     while ((next_vert.x > 0 && next_vert.x < g_game.win_w) && (next_vert.y > 0 && next_vert.y < g_game.win_h))
 //     {
-//         if (hit_wall(next_vert))
+//         if (is_wall(next_vert.x + check, next_vert.y))
 //         {
 //             vert_hit = 1;
 //             vert_wall_hitx = next_vert.x;

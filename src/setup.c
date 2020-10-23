@@ -45,9 +45,8 @@ void    process_input(void)
 
 void    setup()
 {
-    // set_text(game);
-    // if (!load_texture(game))
-    //     exit_game(game);
+    set_text();
+    
     if (!(g_rays = malloc(sizeof(t_ray) * g_game.win_w)))
         write_exit("Error\nallocation fails at rays");
     
@@ -55,11 +54,12 @@ void    setup()
     g_player.walk_direction = 0;
     init();
     process_input();
+    load_texture();
 }
 
 void    render()
 {
-    //wall(game);
+    render_wall();
     render_map();
     render_rays();
     render_player();
@@ -75,7 +75,15 @@ void    update()
 
 int    main_loop()
 {
-    
+    // t_line l;
+
+    // l.d = 50;
+    // l.alpha = M_PI / 2;
+    // l.pos.x = 500;
+    // l.pos.y = 300;
+    // l.color = 0x00bb2205;
+
+    // draw_line(l);
 
     clear_image();
     update();

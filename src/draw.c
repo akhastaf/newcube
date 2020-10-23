@@ -40,7 +40,7 @@ void    draw_line(t_line line)
         new_x = line.pos.x + cos(line.alpha) * i;
         new_y = line.pos.y + sin(line.alpha) * i;
         my_mlx_pixel_put(new_x, new_y, line.color);
-        i++;
+        i = i + 0.2;
     }
 }
 
