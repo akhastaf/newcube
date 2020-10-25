@@ -332,6 +332,7 @@ void get_player()
 						g_player.rotation_angle = M_PI;
 					if (g_game.map.map[i][j] == 'E')
 						g_player.rotation_angle = 0;
+					break;
 				}
 			}
 			j++;
@@ -350,7 +351,10 @@ void load_file(char *path)
     if (!ft_strnstr(path, ".cub", ft_strlen(path)))
         write_exit("Error\nThe filetype isn't <cub>");
     if ((fd = open(path, O_RDONLY)) == -1)
-		write_exit("Error\nFile doesn't exist");
+	{
+		perror("Error\n");
+		exit(1);
+	}
 	g_game.map.map = 0;
 	while ( (r = gnl(fd, &line)) >= 0)
 	{

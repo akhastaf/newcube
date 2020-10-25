@@ -20,6 +20,7 @@ int exit_game()
 {
 	mlx_clear_window(g_game.m_ptr, g_game.w_ptr);
     mlx_destroy_window(g_game.m_ptr, g_game.w_ptr);
+    free(g_rays);
 	exit(0);
 	return (0);
 }
@@ -46,7 +47,7 @@ void    process_input(void)
 void    setup()
 {
     set_text();
-    
+    sp_pos();
     if (!(g_rays = malloc(sizeof(t_ray) * g_game.win_w)))
         write_exit("Error\nallocation fails at rays");
     
@@ -63,33 +64,21 @@ void    render()
     render_map();
     render_rays();
     render_player();
-    //update_sp_d();
-    //sprites();
+    sprites();
 }
 
 void    update()
 {
     move_player();
     cast_all_rays();
+    update_sp_d();
 }
 
 int    main_loop()
 {
-    // t_line l;
-
-    // l.d = 50;
-    // l.alpha = M_PI / 2;
-    // l.pos.x = 500;
-    // l.pos.y = 300;
-    // l.color = 0x00bb2205;
-
-    // draw_line(l);
-
     clear_image();
     update();
     render();
-    // // if (game->save)
-    // //     screanshot(game);
     mlx_put_image_to_window(g_game.m_ptr, g_game.w_ptr, g_img.img, 0, 0);
     
     return 0;

@@ -1,27 +1,4 @@
 #include "../include/cub3d.h"
-
-// int     gnl(char **line, int fd)
-// {
-// 	char    c;
-// 	int     i;
-
-// 	i = 0;
-// 	if ((*line = malloc(1000)) == NULL)
-// 		exit(-1);
-// 	while (read(fd, &c, 1) != 0)
-// 	{
-// 		if (c != '\n')
-// 			(*line)[i++] = c;
-// 		else
-// 		{
-// 			(*line)[i] = 0;
-// 			return (1);
-// 		}
-// 	}
-// 	free(*line);
-// 	return (0);
-// }
-
 #include "../include/gnl.h"
 
 char	*ft_checkerror(int fd, char **buff)

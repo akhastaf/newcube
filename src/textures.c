@@ -44,9 +44,9 @@ int     get_texture(int i)
     else if (!hit_wall(set_pos(&pos, g_rays[i].wall_hit.x - 1, g_rays[i].wall_hit.y)))
         return N_EA;
     else if (!hit_wall(set_pos(&pos, g_rays[i].wall_hit.x, g_rays[i].wall_hit.y + 1)))
-        return N_SO;
-    else if (!hit_wall(set_pos(&pos, g_rays[i].wall_hit.x, g_rays[i].wall_hit.y - 1)))
         return N_NO;
+    else if (!hit_wall(set_pos(&pos, g_rays[i].wall_hit.x, g_rays[i].wall_hit.y - 1)))
+        return N_SO;
     
     return 0;
 }

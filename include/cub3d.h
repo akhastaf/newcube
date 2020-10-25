@@ -8,6 +8,9 @@
 #include <stdio.h>
 #include <math.h>
 #include <fcntl.h>
+#include <errno.h>
+
+extern int errno;
 
 # define MAX_INT 2147483647
 
@@ -19,7 +22,7 @@
 #define FALSE 0
 # define TRUE 1
 
-# define SCALE 0.2
+# define SCALE 0.1
 
 # define EVENT_KEYDOWN 2
 # define EVENT_KEYUP 3
@@ -113,9 +116,10 @@ typedef struct s_map
 
 typedef struct	s_sp
 {
+    t_pos       pos;
 	void		*ptr;
 	int			*data;
-	t_pos       s;
+	// t_pos       s;
 	float		distance;
 }				t_sp;
 
@@ -244,6 +248,8 @@ t_pos    copy_pos(t_pos *pos, t_pos s);
 int     is_wall_at(t_pos pos);
 float normalize_angle(float angle);
 float distance(float x1, float y1, float x2, float y2);
+int		ft_strcmp(const char *s1, const char *s2);
+void	ft_bzero(void *s, size_t n);
 
 
 // Draw
@@ -287,6 +293,24 @@ int  get_text_color(t_tex tex, int x, int y);
 int     get_texture(int i);
 
 
+// Sprites
+void	sp_pos(void);
+void	update_sp_d(void);
+void	render_sp(int x, int y, int sp_size, int k);
+void	init_sprite(int k, int *x_s, int *y_s);
+void	sprites(void);
+int     hit_sprite(t_pos pos);
+float	dist(float x1, float x2, float y1, float y2);
+
+
+// Save
+void	save();
+void	int_in_char(unsigned char *str, int value);
+int		write_header(int fd, unsigned int fd_size);
+int		write_data(int fd, unsigned int pad_byte_row);
+void	screen_shot(void);
+
+// GNL
 int		gnl(int fd, char **line);
 
 #endif

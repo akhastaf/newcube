@@ -17,6 +17,8 @@ void    render_map()
                 rec.color = 16777215;
             else if (g_game.map.map[(int)x][(int)y] == '1')
                 rec.color = 0;
+            else if (g_game.map.map[(int)x][(int)y] == '2')
+                rec.color = 0x00fcf876;
             rec.pos.x = y * TILE_SIZE * SCALE;
             rec.pos.y = x * TILE_SIZE * SCALE;
             draw_rect(rec);
