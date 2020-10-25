@@ -9,7 +9,7 @@ void load_texture()
     {
         g_game.tex[i].img.img = mlx_xpm_file_to_image(g_game.m_ptr, g_game.tex[i].path, &g_game.tex[i].w, &g_game.tex[i].h);
         if (!g_game.tex[i].img.img)
-            write_exit("Error\nfiled to load the texture");
+            exit_error("Error\nfiled to load the texture");
         g_game.tex[i].img.addr = mlx_get_data_addr(g_game.tex[i].img.img, &g_game.tex[i].img.bpp, &g_game.tex[i].img.length, &g_game.tex[i].img.e);
         i++;
     }

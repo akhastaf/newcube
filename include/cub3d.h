@@ -222,6 +222,7 @@ void get_player();
 // Game
 void    init(void);
 int     exit_game();
+void exit_error(char *s);
 void    process_input(void);
 void    setup();
 void    update();

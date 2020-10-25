@@ -4,16 +4,24 @@ void    init(void)
 {
     g_game.m_ptr = mlx_init();
     if (!g_game.m_ptr)
-        write_exit("Error\nfaild to init mlx");
+    {
+        write(1, "Error\nfaild to init mlx", 24);
+        free(g_rays);
+        exit(1);
+    }
     g_game.w_ptr = mlx_new_window(g_game.m_ptr, g_game.win_w, g_game.win_h, "Cub3d");
     if (!g_game.w_ptr)
-        write_exit("Error\nfaild to init windows");
+    {
+        write(1, "Error\nfaild to init windows", 28);
+        free(g_rays);
+        exit(1);
+    }
     g_img.img = mlx_new_image(g_game.m_ptr, g_game.win_w,  g_game.win_h);
     if (!g_img.img)
-        write_exit("Error\nfaild to init image");
+        exit_error("Error\nfaild to init image");
     g_img.addr = mlx_get_data_addr(g_img.img, &g_img.bpp, &g_img.length, &g_img.e);
     if (!g_img.addr)
-        write_exit("Error\nfaild to init image");
+        exit_error("Error\nfaild to init image");
 }
 
 int exit_game()
@@ -23,6 +31,15 @@ int exit_game()
     free(g_rays);
 	exit(0);
 	return (0);
+}
+
+void exit_error(char *s)
+{
+    write(1, s, ft_strlen(s));
+	mlx_clear_window(g_game.m_ptr, g_game.w_ptr);
+    mlx_destroy_window(g_game.m_ptr, g_game.w_ptr);
+    free(g_rays);
+	exit(1);
 }
 
 void    clear_image()
@@ -49,8 +66,10 @@ void    setup()
     set_text();
     sp_pos();
     if (!(g_rays = malloc(sizeof(t_ray) * g_game.win_w)))
-        write_exit("Error\nallocation fails at rays");
-    
+    {
+        write(1, "Error\nallocation fails at rays", 31);
+        exit(1);
+    }
     g_player.turn_direction = 0;
     g_player.walk_direction = 0;
     init();

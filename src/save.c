@@ -2,8 +2,6 @@
 
 void	save()
 {
-
-	//update_sp_d();
     update();
 	render();
 	screen_shot();
@@ -66,21 +64,21 @@ void	screen_shot(void)
 	pbr = g_game.win_w * 3;
 	pad_br = (4 - (pbr % 4)) % 4;
 	size = 54 + (pbr + pad_br) * g_game.win_h;
-	if ((fd = open("screenshot.bmp", O_WRONLY | O_CREAT| O_TRUNC, S_IRUSR |
+	if ((fd = open("screenshot.bmp", O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR |
 		S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH)) < 0)
 	{
 		perror("Error\n");
-		exit_game();
+		exit_error("");
 	}
 	if (write_header(fd, size) < 0)
 	{
 		perror("Error\n");
-		exit_game();
+		exit_error("");
 	}
 	if (!write_data(fd, pad_br))
 	{
 		perror("Error\n");
-		exit_game();
+		exit_error("");
 	}
 	close(fd);
 }

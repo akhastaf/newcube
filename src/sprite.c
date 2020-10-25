@@ -90,7 +90,7 @@ void	init_sprite(int k, int *x_s, int *y_s)
 	g_game.sp[k].ptr = mlx_xpm_file_to_image(g_game.m_ptr,
 					g_game.s_path, x_s, y_s);
 	if (g_game.sp[k].ptr == NULL)
-		write_exit("Error\nthe sprite file can't be loaded");
+		exit_error("Error\nthe sprite file can't be loaded");
 	g_game.sp[k].data = (int *)mlx_get_data_addr(g_game.sp[k].ptr, &a, &a, &a);
 }
 

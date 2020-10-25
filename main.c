@@ -25,7 +25,7 @@ int     main(int ac, char **av)
        if (!(ft_strcmp(av[2], "--save")))
             save();
         else
-            write_exit("Error\nseccond argument unkown");
+            exit_error("Error\nseccond argument unkown");
     }
     mlx_loop_hook(g_game.m_ptr, &main_loop, (void*)0);
     mlx_loop(g_game.m_ptr);
