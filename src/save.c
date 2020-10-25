@@ -68,10 +68,19 @@ void	screen_shot(void)
 	size = 54 + (pbr + pad_br) * g_game.win_h;
 	if ((fd = open("screenshot.bmp", O_WRONLY | O_CREAT| O_TRUNC, S_IRUSR |
 		S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH)) < 0)
+	{
 		perror("Error\n");
+		exit_game();
+	}
 	if (write_header(fd, size) < 0)
+	{
 		perror("Error\n");
+		exit_game();
+	}
 	if (!write_data(fd, pad_br))
+	{
 		perror("Error\n");
+		exit_game();
+	}
 	close(fd);
 }
