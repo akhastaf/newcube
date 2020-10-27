@@ -36,7 +36,7 @@ int		write_header(int fd, unsigned int fd_size)
 
 int		write_data(int fd, unsigned int pad_br)
 {
-	const unsigned char zeroes = 0;
+	const unsigned char zeroes[3] = {0, 0, 0};
 	int					y;
 	int					x;
 

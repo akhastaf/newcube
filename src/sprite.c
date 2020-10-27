@@ -15,8 +15,8 @@ void	sp_pos(void)
 		{
 			if (g_game.map.map[j][i] == '2')
 			{
-				g_game.sp[k].pos.x = j * TILE_SIZE + TILE_SIZE / 2;
-				g_game.sp[k].pos.y = i * TILE_SIZE + TILE_SIZE / 2;
+				g_game.sp[k].pos.x = i * TILE_SIZE + TILE_SIZE / 2;
+				g_game.sp[k].pos.y = j * TILE_SIZE + TILE_SIZE / 2;
 				g_game.sp_num++;
 				k++;
 			}
@@ -34,7 +34,7 @@ void	update_sp_d(void)
 
 	i = -1;
 	while (++i < g_game.sp_num)
-		g_game.sp[i].distance = distance(g_game.sp[i].pos.x, g_player.pos.x, g_game.sp[i].pos.y, g_player.pos.y);
+		g_game.sp[i].distance = distance(g_game.sp[i].pos.x, g_game.sp[i].pos.y, g_player.pos.x, g_player.pos.y);
 	i = 0;
 	while (i < g_game.sp_num)
 	{
@@ -106,7 +106,6 @@ void	sprites(void)
 	while (++k < g_game.sp_num)
 	{
 		sp_angle = atan2(g_game.sp[k].pos.y - g_player.pos.y, g_game.sp[k].pos.x - g_player.pos.x);
-		// normalize_angle(sp_angle - g_player.rotation_angle);
         while (sp_angle - (g_player.rotation_angle) > M_PI)
 			sp_angle -= 2 * M_PI;
 		while (sp_angle - (g_player.rotation_angle) < -M_PI)
@@ -132,9 +131,4 @@ int     hit_sprite(t_pos pos)
     index_x = floor(pos.x / TILE_SIZE);
     index_y = floor(pos.y / TILE_SIZE);
     return (g_game.map.map[(int)index_y][(int)index_x] == '2' ? 1 : 0);
-}
-
-float	dist(float x1, float x2, float y1, float y2)
-{
-	return (sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2)));
 }

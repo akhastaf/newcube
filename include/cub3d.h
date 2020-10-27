@@ -251,6 +251,8 @@ float normalize_angle(float angle);
 float distance(float x1, float y1, float x2, float y2);
 int		ft_strcmp(const char *s1, const char *s2);
 void	ft_bzero(void *s, size_t n);
+void	free_paths();
+void	free_map();
 
 
 // Draw
@@ -301,7 +303,6 @@ void	render_sp(int x, int y, int sp_size, int k);
 void	init_sprite(int k, int *x_s, int *y_s);
 void	sprites(void);
 int     hit_sprite(t_pos pos);
-float	dist(float x1, float x2, float y1, float y2);
 
 
 // Save
@@ -313,5 +314,4 @@ void	screen_shot(void);
 
 // GNL
 int		gnl(int fd, char **line);
-
 #endif

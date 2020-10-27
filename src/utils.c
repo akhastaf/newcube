@@ -198,3 +198,25 @@ void	ft_bzero(void *s, size_t n)
 	while (i < n)
 		((unsigned char *)s)[i++] = 0;
 }
+
+void	free_map()
+{
+	free(g_game.map.map);
+	// int i;
+
+	// i = 0;
+	// while (i < g_game.win_h)
+	// {
+	// 	free(g_game.map.map[i]);
+	// 	i++;
+	// }
+}
+
+void	free_paths()
+{
+	free(g_game.s_path);
+	free(g_game.tex[N_NO].path);
+	free(g_game.tex[N_SO].path);
+	free(g_game.tex[N_WE].path);
+	free(g_game.tex[N_EA].path);
+}

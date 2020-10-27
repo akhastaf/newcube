@@ -314,7 +314,7 @@ void get_player()
 
 	i = 0;
 	j = 0;
-	while (i < g_game.map.h)
+	while (i < g_game.map.h) //Row
 	{
 		while (j < g_game.map.w)
 		{
@@ -322,8 +322,8 @@ void get_player()
 			{
 				if (IS_P(g_game.map.map[i][j]))
 				{
-					g_player.pos.x = j * TILE_SIZE;
-					g_player.pos.y = i * TILE_SIZE;
+					g_player.pos.x = j * TILE_SIZE + TILE_SIZE / 2;
+					g_player.pos.y = i * TILE_SIZE + TILE_SIZE / 2;
 					if (g_game.map.map[i][j] == 'N')
 						g_player.rotation_angle = 3 * M_PI / 2;
 					if (g_game.map.map[i][j] == 'S')

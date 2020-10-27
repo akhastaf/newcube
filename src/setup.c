@@ -28,6 +28,8 @@ int exit_game()
 {
 	mlx_clear_window(g_game.m_ptr, g_game.w_ptr);
     mlx_destroy_window(g_game.m_ptr, g_game.w_ptr);
+    free_map();
+    free_paths();
     free(g_rays);
 	exit(0);
 	return (0);
@@ -38,6 +40,8 @@ void exit_error(char *s)
     write(1, s, ft_strlen(s));
 	mlx_clear_window(g_game.m_ptr, g_game.w_ptr);
     mlx_destroy_window(g_game.m_ptr, g_game.w_ptr);
+    free_map();
+    free_paths();
     free(g_rays);
 	exit(1);
 }
@@ -88,9 +92,9 @@ void    render()
 
 void    update()
 {
-    move_player();
-    cast_all_rays();
-    update_sp_d();
+   move_player();
+   cast_all_rays();
+   update_sp_d();
 }
 
 int    main_loop()

@@ -56,10 +56,10 @@ void    init_horz(int id)
 
 void cast_horz(int id)
 {
-    // int check;
+    int check;
 
     init_horz(id);
-    // check = g_rays[id].ray_d ? 0 : -1;
+    check = g_rays[id].ray_d ? 0 : -1;
     while ((g_horz.next.x >= 0 && g_horz.next.x <= g_game.map.w * TILE_SIZE) && (g_horz.next.y >= 0 && g_horz.next.y <= g_game.map.h * TILE_SIZE))
     {
         if (is_wall(g_horz.next.x, g_horz.next.y))
@@ -94,10 +94,10 @@ void    init_vert(int id)
 }
 void cast_vert(int id)
 {
-    // int check;
+    int check;
     
     init_vert(id);
-    //check = g_rays[id].ray_r ? 0 : -1;
+    check = g_rays[id].ray_r ? 0 : -1;
     while ((g_vert.next.x >= 0 && g_vert.next.x <= g_game.map.w * TILE_SIZE) && (g_vert.next.y >= 0 && g_vert.next.y <= g_game.map.h * TILE_SIZE))
     {
         if (is_wall(g_vert.next.x, g_vert.next.y))
