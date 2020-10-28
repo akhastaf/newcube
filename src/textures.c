@@ -38,15 +38,9 @@ void    set_text()
 
 int     get_texture(int i)
 {
-    t_pos pos;
-    if (!hit_wall(set_pos(&pos, g_rays[i].wall_hit.x + 1, g_rays[i].wall_hit.y)))
-        return N_WE;
-    else if (!hit_wall(set_pos(&pos, g_rays[i].wall_hit.x - 1, g_rays[i].wall_hit.y)))
-        return N_EA;
-    else if (!hit_wall(set_pos(&pos, g_rays[i].wall_hit.x, g_rays[i].wall_hit.y + 1)))
-        return N_NO;
-    else if (!hit_wall(set_pos(&pos, g_rays[i].wall_hit.x, g_rays[i].wall_hit.y - 1)))
-        return N_SO;
-    
+    if (!g_rays[i].vert_hit)
+        return (g_rays[i].ray_d ? N_SO : N_NO);
+    else
+        return (g_rays[i].ray_l ? N_WE : N_EA);
     return 0;
 }

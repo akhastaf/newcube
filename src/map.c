@@ -75,8 +75,8 @@ int     hit_wall(t_pos pos)
     float   index_x;
     float   index_y;
     
-    // if (pos.x < 0 || pos.x > g_game.win_w || pos.y < 0 || pos.y > g_game.win_h)
-    //     return 1;
+    if (pos.x < 0 || pos.x > g_game.map.w * TILE_SIZE || pos.y < 0 || pos.y > g_game.map.h * TILE_SIZE)
+        return 1;
     index_x = floor(pos.x / TILE_SIZE);
     index_y = floor(pos.y / TILE_SIZE);
     return (g_game.map.map[(int)index_y][(int)index_x] == '1' ? 1 : 0);
@@ -87,8 +87,8 @@ int     is_wall(float x, float y)
     float   index_x;
     float   index_y;
     
-    // if (x < 0 || x > g_game.win_w || y < 0 || y > g_game.win_h)
-    //     return 1;
+    if (x < 0 || x > g_game.map.w * TILE_SIZE || y < 0 || y > g_game.map.h * TILE_SIZE)
+        return 1;
     index_x = floor(x / TILE_SIZE);
     index_y = floor(y / TILE_SIZE);
     return (g_game.map.map[(int)index_y][(int)index_x] == '1' ? 1 : 0);

@@ -48,7 +48,7 @@ void    init_horz(int id)
     g_horz.step.x = g_horz.step.y / tan(g_rays[id].angle);
     g_horz.inter.y = floor(g_player.pos.y / TILE_SIZE) * TILE_SIZE;
     g_horz.inter.y += (g_rays[id].ray_d ? TILE_SIZE : 0);
-    g_horz.inter.y += (g_rays[id].ray_up ? -1 : 0);
+    // g_horz.inter.y += g_rays[id].ray_d ? 0 : -1;
     g_horz.inter.x = g_player.pos.x + ((g_horz.inter.y - g_player.pos.y) / tan(g_rays[id].angle));
     g_horz.next.x = g_horz.inter.x;
     g_horz.next.y = g_horz.inter.y;
@@ -57,13 +57,17 @@ void    init_horz(int id)
 void cast_horz(int id)
 {
     int check;
-
+    // printf("init horz start\n");
     init_horz(id);
+    // printf("init horz done\n");
     check = g_rays[id].ray_d ? 0 : -1;
-    while ((g_horz.next.x >= 0 && g_horz.next.x <= g_game.map.w * TILE_SIZE) && (g_horz.next.y >= 0 && g_horz.next.y <= g_game.map.h * TILE_SIZE))
+    while ((g_horz.next.x > 0 && g_horz.next.x < g_game.map.w * TILE_SIZE) && (g_horz.next.y > 0 && g_horz.next.y < g_game.map.h * TILE_SIZE))
     {
-        if (is_wall(g_horz.next.x, g_horz.next.y))
+        // printf("horz.next.x %f horz.next.y %f\n", g_horz.next.x, g_horz.next.y);
+        // printf("map width %d map height %d\n", g_game.map.w * TILE_SIZE, g_game.map.h * TILE_SIZE);
+        if (is_wall(g_horz.next.x, g_horz.next.y + check))
         {
+            // printf("is wall done\n");
             g_horz.hit = 1;
             g_horz.wall.x = g_horz.next.x;
             g_horz.wall.y = g_horz.next.y;
@@ -75,6 +79,7 @@ void cast_horz(int id)
             g_horz.next.x += g_horz.step.x;
             g_horz.next.y += g_horz.step.y;
         }
+        // printf("one turn done\n");
     };
 }
 void    init_vert(int id)
@@ -87,7 +92,7 @@ void    init_vert(int id)
     g_vert.step.y = g_vert.step.x * tan(g_rays[id].angle);
     g_vert.inter.x = floor(g_player.pos.x / TILE_SIZE) * TILE_SIZE;
     g_vert.inter.x += (g_rays[id].ray_r ? TILE_SIZE : 0);
-    g_vert.inter.x += (g_rays[id].ray_l ? -1 : 0);
+    // g_vert.inter.x += g_rays[id].ray_r ? 0 : -1;
     g_vert.inter.y = g_player.pos.y + ((g_vert.inter.x - g_player.pos.x) * tan(g_rays[id].angle));
     g_vert.next.x = g_vert.inter.x;
     g_vert.next.y = g_vert.inter.y;
@@ -95,12 +100,12 @@ void    init_vert(int id)
 void cast_vert(int id)
 {
     int check;
-    
-    init_vert(id);
+
     check = g_rays[id].ray_r ? 0 : -1;
-    while ((g_vert.next.x >= 0 && g_vert.next.x <= g_game.map.w * TILE_SIZE) && (g_vert.next.y >= 0 && g_vert.next.y <= g_game.map.h * TILE_SIZE))
+    init_vert(id);
+    while ((g_vert.next.x > 0 && g_vert.next.x < g_game.map.w * TILE_SIZE) && (g_vert.next.y > 0 && g_vert.next.y < g_game.map.h * TILE_SIZE))
     {
-        if (is_wall(g_vert.next.x, g_vert.next.y))
+        if (is_wall(g_vert.next.x + check, g_vert.next.y))
         {
             g_vert.hit = 1;
             g_vert.wall.x = g_vert.next.x;
@@ -123,8 +128,12 @@ void cast_ray(int id)
     g_rays[id].ray_up = !g_rays[id].ray_d;
     g_rays[id].ray_r = ((g_rays[id].angle < M_PI * 0.5 || g_rays[id].angle > 1.5 * M_PI) ? 1 : 0);    
     g_rays[id].ray_l = !g_rays[id].ray_r;
+    // printf("cast horz start\n");
     cast_horz(id);
+    // printf("cast horz done\n");
+    // printf("cast vert start\n");
     cast_vert(id);
+    // printf("cast horz done\n");
     g_horz.dist = g_horz.hit ? distance(g_player.pos.x, g_player.pos.y, g_horz.wall.x, g_horz.wall.y) : MAX_INT;
     g_vert.dist = g_vert.hit ? distance(g_player.pos.x, g_player.pos.y, g_vert.wall.x, g_vert.wall.y) : MAX_INT;
     if (g_vert.dist < g_horz.dist)

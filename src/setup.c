@@ -93,8 +93,11 @@ void    render()
 void    update()
 {
    move_player();
+//    printf("Move player done\n");
    cast_all_rays();
+//    printf("cast all rays done\n");
    update_sp_d();
+//    printf("update sp distance done\n");
 }
 
 int    main_loop()
