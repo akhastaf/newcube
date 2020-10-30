@@ -14,14 +14,26 @@ void    render_map()
         while (x < g_game.map.h)
         {
             if(g_game.map.map[(int)x][(int)y] == '0')
+            {
                 rec.color = 16777215;
+                rec.pos.x = y * TILE_SIZE * SCALE;
+                rec.pos.y = x * TILE_SIZE * SCALE;
+                draw_rect(rec);
+            }
             else if (g_game.map.map[(int)x][(int)y] == '1')
+            {
                 rec.color = 0;
+                rec.pos.x = y * TILE_SIZE * SCALE;
+                rec.pos.y = x * TILE_SIZE * SCALE;
+                draw_rect(rec);
+            }
             else if (g_game.map.map[(int)x][(int)y] == '2')
+            {
                 rec.color = 0x00fcf876;
-            rec.pos.x = y * TILE_SIZE * SCALE;
-            rec.pos.y = x * TILE_SIZE * SCALE;
-            draw_rect(rec);
+                rec.pos.x = y * TILE_SIZE * SCALE;
+                rec.pos.y = x * TILE_SIZE * SCALE;
+                draw_rect(rec);
+            }
             x++;
         }
         y++;
@@ -59,7 +71,6 @@ void    render_wall()
                 g_game.tex[t].offset_y =  (j + ((wall_strip_height / 2) - (g_game.win_h / 2))) * ((float)(g_game.tex[t].h) / (float)wall_strip_height);
                 g_game.tex[t].offset_y = g_game.tex[t].offset_y >= g_game.win_h ? g_game.win_h - 1 : g_game.tex[t].offset_y;
                 color = get_text_color(g_game.tex[t], g_game.tex[t].offset_x, g_game.tex[t].offset_y);
-                // color = 0x00389393;
             }
             else if (j > top + wall_strip_height)
                 color = g_game.floor;

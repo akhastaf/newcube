@@ -67,8 +67,11 @@ void    process_input(void)
 
 void    setup()
 {
+    printf("start setting up\n");
     set_text();
+    printf("done text\n");
     sp_pos();
+    printf("done sp\n");
     if (!(g_rays = malloc(sizeof(t_ray) * g_game.win_w)))
     {
         write(1, "Error\nallocation fails at rays", 31);
@@ -79,6 +82,7 @@ void    setup()
     init();
     process_input();
     load_texture();
+    printf("done setup\n");
 }
 
 void    render()

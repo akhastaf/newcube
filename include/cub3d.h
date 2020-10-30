@@ -22,7 +22,7 @@ extern int errno;
 #define FALSE 0
 # define TRUE 1
 
-# define SCALE 0.1
+# define SCALE 0.02
 
 # define EVENT_KEYDOWN 2
 # define EVENT_KEYUP 3
@@ -44,8 +44,8 @@ extern int errno;
 
 # define TILE_SIZE 64
 
-#define IS_MAP_ELEMENT(x) (x == 'N' || x == 'W' || x == 'S' || x == 'E' || x == '2' || x == '1' || x == '0')
-#define IS_ZSP(x) (x == 'N' || x == 'W' || x == 'S' || x == 'E' || x == '2')
+#define IS_MAP_ELEMENT(x) (x == 'N' || x == 'W' || x == 'S' || x == 'E' || x == '2' || x == '1' || x == '0' || x == ' ')
+#define IS_ZSP(x) (x == 'N' || x == 'W' || x == 'S' || x == 'E' || x == '2' || x == '0')
 #define IS_P(x) (x == 'N' || x == 'W' || x == 'S' || x == 'E')
 
 typedef struct s_pos
@@ -177,7 +177,7 @@ typedef struct s_game
 	t_tex   tex[4];
     // Sprites
     char    *s_path;
-    t_sp    sp[100];
+    t_sp    sp[1000];
     int     sp_num;
 	// Window resolution
 	int win_w;

@@ -11,6 +11,8 @@ void treat_element(char *element)
 	int i;
 
 	i = spaces(element);
+	printf("%s\n", element);
+	printf("%d\n", i);
 	if (element[i] == 'N' && element[i + 1] == 'O')
 		treat_no(element + 2 + i);
 	else if (element[i] == 'S' && element[i + 1] == 'O')
@@ -27,7 +29,7 @@ void treat_element(char *element)
 		treat_f(element + 1 + i);
 	else if (element[i] == 'C')
 		treat_c(element + 1 + i);
-	else if (IS_MAP_ELEMENT(element[i]))
+	else if (IS_MAP_ELEMENT(*element))
 		treat_m(element);
 	else
 		write_exit("Error\n<cub> file isn't well defined");
@@ -95,17 +97,33 @@ void treat_f(char *s)
 	skip_spaces(&s);
 	if (!*s)
 		write_exit("Error\nNo value assigned to F element");
+	if (!ft_isdigit(*s))
+		write_exit("Error\nNo value assigned to C element");
 	color.r = ft_atoi(s);
 	skip_digit(&s);
 	skip_spaces(&s);
+	if (*s != ',')
+		write_exit("Error\nNo value assigned to C element");
 	s++;
+	skip_spaces(&s);
+	if (!ft_isdigit(*s))
+		write_exit("Error\nNo value assigned to C element");
 	color.g = ft_atoi(s);
 	skip_digit(&s);
 	skip_spaces(&s);
+	if (*s != ',')
+		write_exit("Error\nNo value assigned to C element");
 	s++;
+	skip_spaces(&s);
+	if (!ft_isdigit(*s))
+		write_exit("Error\nNo value assigned to C element");
 	color.b = ft_atoi(s);
 	if (color.r < 0 || color.r > 255 || color.g < 0 || color.g > 255 || color.b < 0 || color.b > 255)
 		write_exit("Error\nColors are invalid");
+	skip_digit(&s);
+	skip_spaces(&s);
+	if (*s)
+		write_exit("Error\nNo value assigned to C element");
 	color.r <<= 16;
 	color.g <<= 8;
 	g_game.floor = color.r + color.g + color.b;
@@ -121,17 +139,33 @@ void treat_c(char *s)
 	skip_spaces(&s);
 	if (!*s)
 		write_exit("Error\nNo value assigned to C element");
+	if (!ft_isdigit(*s))
+		write_exit("Error\nNo value assigned to C element");
 	color.r = ft_atoi(s);
 	skip_digit(&s);
 	skip_spaces(&s);
+	if (*s != ',')
+		write_exit("Error\nNo value assigned to C element");
 	s++;
+	skip_spaces(&s);
+	if (!ft_isdigit(*s))
+		write_exit("Error\nNo value assigned to C element");
 	color.g = ft_atoi(s);
 	skip_digit(&s);
 	skip_spaces(&s);
+	if (*s != ',')
+		write_exit("Error\nNo value assigned to C element");
 	s++;
+	skip_spaces(&s);
+	if (!ft_isdigit(*s))
+		write_exit("Error\nNo value assigned to C element");
 	color.b = ft_atoi(s);
 	if (color.r < 0 || color.r > 255 || color.g < 0 || color.g > 255 || color.b < 0 || color.b > 255)
 		write_exit("Error\nColors are invalid");
+	skip_digit(&s);
+	skip_spaces(&s);
+	if (*s)
+		write_exit("Error\nNo value assigned to C element");
 	color.r <<= 16;
 	color.g <<= 8;
 	g_game.ceil = color.r + color.g + color.b;
@@ -149,22 +183,29 @@ void treat_r(char *s)
 	g_game.win_w = ft_atoi(s);
 	skip_digit(&s);
 	skip_spaces(&s);
+	if (!ft_isdigit(*s))
+		write_exit("Error\nNo value assigned to C element");
 	g_game.win_h = ft_atoi(s);
+	skip_digit(&s);
+	skip_spaces(&s);
+	if (*s)
+		write_exit("Error\nNo value assigned to C element");
 	g_tkn.r += 1;
 	if (g_tkn.r == 2)
 		write_exit("Error\nMore  than one R detected in <cub> file");
-	if (g_game.win_h <= 0 || g_game.win_h > 1440 || g_game.win_w <= 0 || g_game.win_w > 2560)
-	{
+	if (g_game.win_h <= 0 || g_game.win_w <= 0)
+		write_exit("Error\nNo value assigned to C element");
+	if ( g_game.win_h > 1440)
 		g_game.win_h = 1440;
+	if (g_game.win_w > 2560)
 		g_game.win_w = 2560;
-	}
 	// write_exit("Error\nResolution is invalid");
 }
 
 void check_before_map()
 {
 	if (g_tkn.no == 0 || g_tkn.so == 0 || g_tkn.we == 0 || g_tkn.ea == 0 || g_tkn.s == 0
-			|| g_tkn.f == 0 || g_tkn.c == 0)
+			|| g_tkn.f == 0 || g_tkn.c == 0 || g_tkn.r == 0)
 		write_exit("Error\nNot all elements defined above the map in <cub> file");
 }
 

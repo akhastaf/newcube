@@ -4,7 +4,7 @@ DEP = -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit
 MLX = -L mlx_lib -lmlx 
 # DEP = -framework OpenGL -framework AppKit
 FLAGS = -Wall -Wextra -Werror
-NAME = cub3d
+NAME = cub3D
 D = -g
 SRC = ./src/*.c main.c
 

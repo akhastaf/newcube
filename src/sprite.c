@@ -75,7 +75,7 @@ void	render_sp(int x, int y, int sp_size, int k)
 		{
 			colors = g_game.sp[k].data[x_s * (j * y_s / sp_size) +
 								(i * x_s / sp_size)];
-			if (colors != 0)
+			if (colors > 0x000000)
 				if (((x + i) >= 0 && (x + i) < g_game.win_w) &&
 					((y + j) >= 0 && (y + j) < g_game.win_h))
 					my_mlx_pixel_put(x + i, y + j, colors);
