@@ -22,7 +22,7 @@ extern int errno;
 #define FALSE 0
 # define TRUE 1
 
-# define SCALE 0.02
+# define SCALE 0.1
 
 # define EVENT_KEYDOWN 2
 # define EVENT_KEYUP 3
@@ -177,7 +177,7 @@ typedef struct s_game
 	t_tex   tex[4];
     // Sprites
     char    *s_path;
-    t_sp    sp[1000];
+    t_sp    *sp;
     int     sp_num;
 	// Window resolution
 	int win_w;
@@ -303,6 +303,7 @@ void	render_sp(int x, int y, int sp_size, int k);
 void	init_sprite(int k, int *x_s, int *y_s);
 void	sprites(void);
 int     hit_sprite(t_pos pos);
+void		sp_count();
 
 
 // Save

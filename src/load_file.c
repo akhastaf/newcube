@@ -11,8 +11,8 @@ void treat_element(char *element)
 	int i;
 
 	i = spaces(element);
-	printf("%s\n", element);
-	printf("%d\n", i);
+	// printf("%s\n", element);
+	// printf("%d\n", i);
 	if (element[i] == 'N' && element[i + 1] == 'O')
 		treat_no(element + 2 + i);
 	else if (element[i] == 'S' && element[i + 1] == 'O')
@@ -30,7 +30,10 @@ void treat_element(char *element)
 	else if (element[i] == 'C')
 		treat_c(element + 1 + i);
 	else if (IS_MAP_ELEMENT(*element))
-		treat_m(element);
+	{
+		if (!(element[i] == 0 && g_tkn.map == 0))
+			treat_m(element);
+	}
 	else
 		write_exit("Error\n<cub> file isn't well defined");
 }

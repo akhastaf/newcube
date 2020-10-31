@@ -28,9 +28,10 @@ int exit_game()
 {
 	mlx_clear_window(g_game.m_ptr, g_game.w_ptr);
     mlx_destroy_window(g_game.m_ptr, g_game.w_ptr);
-    free_map();
+    free(g_game.map.map);
     free_paths();
     free(g_rays);
+    free(g_game.sp);
 	exit(0);
 	return (0);
 }
@@ -40,8 +41,9 @@ void exit_error(char *s)
     write(1, s, ft_strlen(s));
 	mlx_clear_window(g_game.m_ptr, g_game.w_ptr);
     mlx_destroy_window(g_game.m_ptr, g_game.w_ptr);
-    free_map();
+    free(g_game.map.map);
     free_paths();
+    free(g_game.sp);
     free(g_rays);
 	exit(1);
 }
@@ -67,22 +69,28 @@ void    process_input(void)
 
 void    setup()
 {
-    printf("start setting up\n");
+    g_game.sp_num = 0;
+    sp_count();
     set_text();
-    printf("done text\n");
-    sp_pos();
-    printf("done sp\n");
     if (!(g_rays = malloc(sizeof(t_ray) * g_game.win_w)))
     {
-        write(1, "Error\nallocation fails at rays", 31);
-        exit(1);
+        free_paths();
+        free(g_game.map.map);
+        write_exit("Error\nallocation fails at rays");
     }
+    if (!(g_game.sp = malloc(sizeof(t_sp) * g_game.sp_num)))
+    {
+        free_paths();
+        free(g_game.map.map);
+        free(g_rays);
+        write_exit("Error\nallocation fails at sprites");
+    }
+    sp_pos();
     g_player.turn_direction = 0;
     g_player.walk_direction = 0;
     init();
     process_input();
     load_texture();
-    printf("done setup\n");
 }
 
 void    render()
