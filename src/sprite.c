@@ -3,10 +3,8 @@ void		sp_count()
 {
 	int i;
 	int j;
-	int k;
 
 	i = 0;
-	k = 0;
 	while (i < g_game.map.w)
 	{
 		j = 0;

@@ -22,7 +22,7 @@ extern int errno;
 #define FALSE 0
 # define TRUE 1
 
-# define SCALE 0.1
+# define SCALE 0.2
 
 # define EVENT_KEYDOWN 2
 # define EVENT_KEYUP 3
@@ -38,7 +38,7 @@ extern int errno;
 # define KEY_UP 126
 # define ESC_KEY 53
 
-# define ANGLE_S    (8 * (M_PI / 180))
+# define ANGLE_S (8 * (M_PI / 180))
 # define SPEED 8
 # define FOV (60 * (M_PI / 180))
 

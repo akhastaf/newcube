@@ -9,9 +9,6 @@ void    move_player()
     g_player.rotation_angle += g_player.turn_direction * ANGLE_S;
     pos.x = g_player.pos.x + cos(g_player.rotation_angle) * step;
     pos.y = g_player.pos.y + sin(g_player.rotation_angle) * step;
-    // printf("x : %f y : %f\n", pos.x, pos.y);
-    // printf("player x : %f player y : %f\n", g_player.pos.x, g_player.pos.y);
-    // printf("Map width %d Map height %d\n", g_game.map.w * TILE_SIZE, g_game.map.h * TILE_SIZE);
     if (!hit_wall(pos) && !hit_sprite(pos))
         set_pos(&(g_player.pos), pos.x , pos.y);
 }

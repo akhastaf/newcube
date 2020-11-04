@@ -67,18 +67,18 @@ void	screen_shot(void)
 	if ((fd = open("screenshot.bmp", O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR |
 		S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH)) < 0)
 	{
-		perror("Error\n");
-		exit_error("");
+		write(1, "Error\n", 7);
+		exit_error(strerror(errno));
 	}
 	if (write_header(fd, size) < 0)
 	{
-		perror("Error\n");
-		exit_error("");
+		write(1, "Error\n", 7);
+		exit_error(strerror(errno));
 	}
 	if (!write_data(fd, pad_br))
 	{
-		perror("Error\n");
-		exit_error("");
+		write(1, "Error\n", 7);
+		exit_error(strerror(errno));
 	}
 	close(fd);
 }
