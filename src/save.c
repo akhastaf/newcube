@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   save.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akhastaf <akhastaf@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/05 13:20:27 by akhastaf          #+#    #+#             */
+/*   Updated: 2020/11/06 10:22:51 by akhastaf         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3d.h"
 
-void	save()
+void	save(void)
 {
-    update();
+	update();
 	render();
 	screen_shot();
-	exit(0);
+	exit_game();
 }
 
 void	int_in_char(unsigned char *str, int value)

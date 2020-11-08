@@ -6,12 +6,13 @@ MLX = -L mlx_lib -lmlx
 FLAGS = -Wall -Wextra -Werror
 NAME = cub3D
 D = -g
-SRC = ./src/*.c main.c
+SRC = ./src/*.c ./src/utils/*.c ./src/load/*.c
 
 all: $(NAME)
 
 $(NAME):
-	$(C) $(FLAGS) -o $(NAME) $(SRC) $(DEP)
+	./compile.sh 2 LCF main.c gcc -o $(NAME) $(SRC) $(DEP) -include malloc.h
+	#$(C) $(FLAGS) -o $(NAME) $(SRC) $(DEP)
 debug:
 	$(C) $(FLAGS) -o $(NAME) $(SRC) $(MLX) $(DEP) $(D) -fsanitize=address
 	#lldb $(NAME)

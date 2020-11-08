@@ -1,35 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akhastaf <akhastaf@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/05 11:57:42 by akhastaf          #+#    #+#             */
+/*   Updated: 2020/11/05 11:59:47 by akhastaf         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "include/cub3d.h"
 
 int     main(int ac, char **av)
 {
-    // int i = 0;
-    // int j;
-
     if (ac <= 1)
         write_exit("Error\nfile .cup argument is missing\n");
     if (ac > 3)
         write_exit("Error\ntoo many argument\n");
     if (ac >= 2)
-        load_file(av[1]);    
-    // printf("\n\n\n\nEA |%s|\nWE |%s|\nSO |%s|\nNO |%s|\nS |%s|\nC |%d|\nR |%d| |%d|\nF |%d|\nMAP_H |%d|\nMAP_W |%d|\n\n",
-	// 		g_game.tex[N_EA].path, g_game.tex[N_WE].path, g_game.tex[N_SO].path, g_game.tex[N_NO].path, g_game.s_path, g_game.ceil, g_game.win_w, g_game.win_h, g_game.floor, g_game.map.h, g_game.map.w);
-    // printf("x : %f y : %f\nangle rotation : %f\n\n",g_player.pos.x, g_player.pos.y, g_player.rotation_angle);
-	// while (i < g_game.map.w)
-    //     printf("%d ", i++);
-    // printf("\n");
-    // i = 0;
-    // while (i < g_game.map.w)
-	// {
-    //     j = 0;
-    //     while (j < g_game.map.h)
-    //     {
-    //         printf("%d %c",j, g_game.map.map[j][i]);
-    //         j++;
-    //     }
-    //     printf("\n");
-	// 	i++;
-	// }
-    // printf("%d , %d\n", g_game.map.w, g_game.map.h);
+        load_file(av[1]);
     setup();
     if (ac == 3)
     {
@@ -40,5 +30,6 @@ int     main(int ac, char **av)
     }
     mlx_loop_hook(g_game.m_ptr, &main_loop, (void*)0);
     mlx_loop(g_game.m_ptr);
-    return 0;
+    leakcheckfull();
+    return(0);
 }
