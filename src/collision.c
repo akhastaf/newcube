@@ -6,7 +6,7 @@
 /*   By: akhastaf <akhastaf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 14:25:18 by akhastaf          #+#    #+#             */
-/*   Updated: 2020/11/09 08:41:17 by akhastaf         ###   ########.fr       */
+/*   Updated: 2020/11/09 14:18:02 by akhastaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,17 @@ int		hit_wall(t_pos pos)
 	if (g_player.walk_direction == 1 &&
 			g_player.rot_angle >= M_PI && g_player.rot_angle <= 2 * M_PI)
 		index_y = (floor((pos.y - 4)) / TILE_SIZE);
-	if (g_player.walk_direction == 1 &&
-			g_player.rot_angle >= M_PI / 2 &&
-			g_player.rot_angle <= 1.5 * M_PI)
+	if (g_player.walk_direction == 1 && g_player.rot_angle >= M_PI / 2
+			&& g_player.rot_angle <= 1.5 * M_PI)
 		index_x = (floor((pos.x - 4)) / TILE_SIZE);
-	if (g_player.walk_direction == 1 &&
-			g_player.rot_angle >= 0 && g_player.rot_angle <= M_PI)
-		index_y = (floor((pos.y + 4)) / TILE_SIZE);
-	if (g_player.walk_direction == 1 &&
-			g_player.rot_angle >= 0 / 2 &&
-			g_player.rot_angle <= 0.5 * M_PI)
-		index_x = (floor((pos.x + 4)) / TILE_SIZE);
+	if (g_player.x_walk_direction == -1 && g_player.rot_angle >= M_PI
+			&& g_player.rot_angle <= 2 * M_PI)
+		index_x = (floor((pos.x - 4)) / TILE_SIZE);
+	if (g_player.x_walk_direction == -1 && ((g_player.rot_angle >= 0
+				&& g_player.rot_angle <= 0.5 * M_PI)
+				|| (g_player.rot_angle >= 1.5 * M_PI
+				&& g_player.rot_angle <= M_2_PI)))
+		index_y = (floor((pos.y - 4)) / TILE_SIZE);
 	if (g_game.map.map[(int)index_y][(int)index_x] == '1')
 		return (1);
 	return (0);
