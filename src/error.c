@@ -6,7 +6,7 @@
 /*   By: akhastaf <akhastaf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 13:20:01 by akhastaf          #+#    #+#             */
-/*   Updated: 2020/11/07 14:33:44 by akhastaf         ###   ########.fr       */
+/*   Updated: 2020/11/09 09:18:29 by akhastaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	load_error(char *str)
 	if (g_tkn.s)
 		free(g_game.s_path);
 	if (g_tkn.map)
-		free(g_game.map.map);
+		free_map();
 	write_exit(str);
 }
 

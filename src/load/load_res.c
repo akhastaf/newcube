@@ -6,7 +6,7 @@
 /*   By: akhastaf <akhastaf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 14:40:49 by akhastaf          #+#    #+#             */
-/*   Updated: 2020/11/07 11:09:45 by akhastaf         ###   ########.fr       */
+/*   Updated: 2020/11/09 09:01:24 by akhastaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@ void	treat_r(char *s)
 	skip_digit(&s);
 	skip_spaces(&s);
 	if (!ft_isdigit(*s))
-		load_error("Error\nNo value assigned to C element");
+		load_error("Error\nR not define probably element");
 	g_game.win_h = ft_atoi(s);
 	skip_digit(&s);
 	skip_spaces(&s);
 	if (*s)
-		load_error("Error\nNo value assigned to C element");
+		load_error("Error\nR not define probably element");
 	g_tkn.r += 1;
 	if (g_tkn.r == 2)
 		load_error("Error\nMore  than one R detected in <cub> file");
 	if (g_game.win_h <= 0 || g_game.win_w <= 0)
-		load_error("Error\nNo value assigned to C element");
+		load_error("Error\nR not define probably element");
 	if (g_game.win_h > 1440)
 		g_game.win_h = 1440;
 	if (g_game.win_w > 2560)

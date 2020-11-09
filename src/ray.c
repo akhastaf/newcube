@@ -6,7 +6,7 @@
 /*   By: akhastaf <akhastaf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 13:20:21 by akhastaf          #+#    #+#             */
-/*   Updated: 2020/11/07 14:04:54 by akhastaf         ###   ########.fr       */
+/*   Updated: 2020/11/09 08:37:47 by akhastaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	init_cast_ray(int id)
 void	cast_ray(int id)
 {
 	init_cast_ray(id);
-	g_rays[id].ray_l = !g_rays[id].ray_r;
 	cast_horz(id);
 	cast_vert(id);
 	g_horz.dist = g_horz.hit ? distance(g_player.pos.x,

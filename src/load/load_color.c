@@ -6,7 +6,7 @@
 /*   By: akhastaf <akhastaf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 14:40:40 by akhastaf          #+#    #+#             */
-/*   Updated: 2020/11/07 10:19:47 by akhastaf         ###   ########.fr       */
+/*   Updated: 2020/11/09 08:59:04 by akhastaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ t_color		treat_color(char **s)
 			skip_digit(&(*s));
 		skip_spaces(&(*s));
 		if (**s != ',' && i != 0)
-			load_error("Error\nNo value assigned to C element\n");
+			load_error("Error\nNo value assigned to color element\n");
 		else if (**s == ',' && i != 0)
 			(*s)++;
 		skip_spaces(&(*s));
 		if (!ft_isdigit(**s))
-			load_error("Error\nNo value assigned to C element\n");
+			load_error("Error\nNo value assigned to color element\n");
 		if (i == 0)
 			color.r = ft_atoi(*s);
 		else if (i == 1)

@@ -6,7 +6,7 @@
 /*   By: akhastaf <akhastaf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:11:51 by akhastaf          #+#    #+#             */
-/*   Updated: 2020/11/07 14:10:15 by akhastaf         ###   ########.fr       */
+/*   Updated: 2020/11/09 09:32:21 by akhastaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,5 @@ int		is_zsp(char c);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strndup(const char *s1, size_t n);
+void	int_in_char(unsigned char *str, int value);
 #endif

@@ -6,7 +6,7 @@
 /*   By: akhastaf <akhastaf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 14:40:45 by akhastaf          #+#    #+#             */
-/*   Updated: 2020/11/07 13:56:21 by akhastaf         ###   ########.fr       */
+/*   Updated: 2020/11/09 08:53:22 by akhastaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	verify_map(void)
 		if ((g_game.map.map[0][i] != '1' && g_game.map.map[0][i] != ' ')
 				|| (g_game.map.map[g_game.map.h - 1][i] != '1'
 				&& g_game.map.map[g_game.map.h - 1][i] != ' '))
-			load_error("Error\nIncorrect Map");
+			load_error("Error\nIncorrect Map 1");
 	}
 	i = -1;
 	while (++i < g_game.map.h)
@@ -31,7 +31,7 @@ void	verify_map(void)
 		if ((g_game.map.map[i][0] != '1' && g_game.map.map[i][0] != ' ')
 				|| (g_game.map.map[i][g_game.map.w - 1] != '1'
 				&& g_game.map.map[i][g_game.map.w - 1] != ' '))
-			load_error("Error\nIncorrect Map");
+			load_error("Error\nIncorrect Map 2");
 	}
 	check_map();
 }

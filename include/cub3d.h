@@ -6,7 +6,7 @@
 /*   By: akhastaf <akhastaf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 12:04:22 by akhastaf          #+#    #+#             */
-/*   Updated: 2020/11/07 14:48:30 by akhastaf         ###   ########.fr       */
+/*   Updated: 2020/11/09 09:43:02 by akhastaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,9 @@ void		render_all_sp(void);
 int			hit_sprite(t_pos pos);
 void		sp_count(void);
 void		save(void);
-void		int_in_char(unsigned char *str, int value);
-int			write_header(int fd, unsigned int fd_size);
-int			write_data(int fd, unsigned int pad_byte_row);
+void		write_header(int fd, unsigned int fd_size);
+void		write_data(int fd, unsigned int pad);
+void		write_pad(int fd, int pad);
 void		screen_shot(void);
 void		load_error(char *str);
 void		init_wall(int i, t_wall *wall);

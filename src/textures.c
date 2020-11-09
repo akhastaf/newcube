@@ -6,7 +6,7 @@
 /*   By: akhastaf <akhastaf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 13:20:35 by akhastaf          #+#    #+#             */
-/*   Updated: 2020/11/05 14:23:13 by akhastaf         ###   ########.fr       */
+/*   Updated: 2020/11/09 09:04:25 by akhastaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	load_texture(void)
 				&g_game.tex[i].w,
 				&g_game.tex[i].h);
 		if (!g_game.tex[i].img.img)
-			exit_error("Error\nfiled to load the texture");
+			exit_error("Error\nfailed to load the texture");
 		g_game.tex[i].img.addr = mlx_get_data_addr(g_game.tex[i].img.img,
 				&g_game.tex[i].img.bpp,
 				&g_game.tex[i].img.length,

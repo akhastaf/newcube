@@ -11,14 +11,9 @@ SRC = ./src/*.c ./src/utils/*.c ./src/load/*.c
 all: $(NAME)
 
 $(NAME):
-	./compile.sh 2 LCF main.c gcc -o $(NAME) $(SRC) $(DEP) -include malloc.h
-	#$(C) $(FLAGS) -o $(NAME) $(SRC) $(DEP)
-debug:
-	$(C) $(FLAGS) -o $(NAME) $(SRC) $(MLX) $(DEP) $(D) -fsanitize=address
-	#lldb $(NAME)
-run:
-	./$(NAME)
+	@./compile.sh 2 LCF main.c gcc -o $(NAME) $(SRC) $(DEP) -include malloc.h
+	#@$(C) $(FLAGS) -o $(NAME) $(SRC) $(DEP)
 
 clean:
-	rm -f $(NAME)
+	@rm -f $(NAME)
 re: clean all
