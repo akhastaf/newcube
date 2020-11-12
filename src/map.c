@@ -6,7 +6,7 @@
 /*   By: akhastaf <akhastaf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 13:20:14 by akhastaf          #+#    #+#             */
-/*   Updated: 2020/11/06 13:41:52 by akhastaf         ###   ########.fr       */
+/*   Updated: 2020/11/09 19:57:04 by akhastaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	render_wall(void)
 			if (j < wall.top)
 				wall.color = g_game.ceil;
 			else if (j < wall.top + wall.strip_h)
-				cal_wall(i, j, &wall);
+				cal_wall(j, &wall);
 			else if (j > wall.top + wall.strip_h)
 				wall.color = g_game.floor;
 			my_mlx_pixel_put(i, j, wall.color);
@@ -52,7 +52,7 @@ void	init_wall(int i, t_wall *wall)
 		g_game.tex[wall->t].offset_x = (int)g_rays[i].wall_hit.x % TILE_SIZE;
 }
 
-void	cal_wall(int i, int j, t_wall *wall)
+void	cal_wall(int j, t_wall *wall)
 {
 	g_game.tex[wall->t].offset_y = (j + ((wall->strip_h / 2)
 				- (g_game.win_h / 2)))

@@ -6,11 +6,13 @@
 /*   By: akhastaf <akhastaf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 11:57:42 by akhastaf          #+#    #+#             */
-/*   Updated: 2020/11/09 09:02:24 by akhastaf         ###   ########.fr       */
+/*   Updated: 2020/11/09 20:03:47 by akhastaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/cub3d.h"
+#include "./include/cub3d.h"
+
+
 
 int		main(int ac, char **av)
 {
@@ -30,6 +32,6 @@ int		main(int ac, char **av)
 	}
 	mlx_loop_hook(g_game.m_ptr, &main_loop, (void*)0);
 	mlx_loop(g_game.m_ptr);
-	leakcheckfull();
+	//leakcheckfull();
 	return (0);
 }

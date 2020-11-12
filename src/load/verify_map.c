@@ -6,7 +6,7 @@
 /*   By: akhastaf <akhastaf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 14:40:45 by akhastaf          #+#    #+#             */
-/*   Updated: 2020/11/09 08:53:22 by akhastaf         ###   ########.fr       */
+/*   Updated: 2020/11/09 19:58:46 by akhastaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	verify_map(void)
 {
 	int i;
-	int j;
 
 	i = -1;
 	while (++i < g_game.map.w)

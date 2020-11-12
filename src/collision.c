@@ -6,7 +6,7 @@
 /*   By: akhastaf <akhastaf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 14:25:18 by akhastaf          #+#    #+#             */
-/*   Updated: 2020/11/09 14:18:02 by akhastaf         ###   ########.fr       */
+/*   Updated: 2020/11/10 11:03:34 by akhastaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int		hit_sprite(t_pos pos)
 	if (pos.x < 0 || pos.x > g_game.map.w * TILE_SIZE ||
 			pos.y < 0 || pos.y > g_game.map.h * TILE_SIZE)
 		return (1);
-	index_x = floor(pos.x / TILE_SIZE);
-	index_y = floor(pos.y / TILE_SIZE);
+	index_x = floor((pos.x) / TILE_SIZE);
+	index_y = floor((pos.y) / TILE_SIZE);
 	return (g_game.map.map[(int)index_y][(int)index_x] == '2' ? 1 : 0);
 }

@@ -2,3 +2,13 @@
 .vscode/
 cub3d_destroyer/
 cub3D_tester/
+cub3D.dSYM/
+mlx/
+mlx_lib/
+a.out
+malloc_main.c
+malloc.c
+malloc.h
+xmalloc.h
+inc.h
+compile.sh

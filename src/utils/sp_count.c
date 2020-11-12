@@ -6,7 +6,7 @@
 /*   By: akhastaf <akhastaf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 14:27:12 by akhastaf          #+#    #+#             */
-/*   Updated: 2020/11/05 14:28:03 by akhastaf         ###   ########.fr       */
+/*   Updated: 2020/11/10 18:34:45 by akhastaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ void	sp_count(void)
 		while (j < g_game.map.h)
 		{
 			if (g_game.map.map[j][i] == '2')
-			{
 				g_game.sp_num++;
-			}
 			j++;
 		}
 		i++;

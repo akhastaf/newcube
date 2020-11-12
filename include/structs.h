@@ -6,7 +6,7 @@
 /*   By: akhastaf <akhastaf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 12:07:25 by akhastaf          #+#    #+#             */
-/*   Updated: 2020/11/07 14:39:34 by akhastaf         ###   ########.fr       */
+/*   Updated: 2020/11/12 14:47:42 by akhastaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,8 +139,6 @@ typedef struct	s_player
 	int			turn_direction;
 	int			walk_direction;
 	int			x_walk_direction;
-	float		move_speed;
-	float		angle_speed;
 }				t_player;
 
 typedef struct	s_game

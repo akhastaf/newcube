@@ -6,7 +6,7 @@
 /*   By: akhastaf <akhastaf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 12:04:22 by akhastaf          #+#    #+#             */
-/*   Updated: 2020/11/09 09:43:02 by akhastaf         ###   ########.fr       */
+/*   Updated: 2020/11/12 14:52:39 by akhastaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <unistd.h>
 # include "mlx.h"
-# include "../malloc.h"
 # include <stdlib.h>
 # include <string.h>
 # include <math.h>
@@ -82,7 +81,7 @@ int			get_text_color(t_tex tex, int x, int y);
 int			get_texture(int i);
 void		get_sp(void);
 void		update_sp(void);
-void		render_sp(int x, int y, int sp_size, int k);
+void		render_sp(int x, int y, int sp_s, int k);
 void		init_sprite(int k, int *x_s, int *y_s);
 void		render_all_sp(void);
 int			hit_sprite(t_pos pos);
@@ -94,6 +93,6 @@ void		write_pad(int fd, int pad);
 void		screen_shot(void);
 void		load_error(char *str);
 void		init_wall(int i, t_wall *wall);
-void		cal_wall(int i, int j, t_wall *wall);
+void		cal_wall(int j, t_wall *wall);
 int			gnl(int fd, char **line);
 #endif

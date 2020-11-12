@@ -6,7 +6,7 @@
 /*   By: akhastaf <akhastaf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 14:40:47 by akhastaf          #+#    #+#             */
-/*   Updated: 2020/11/07 11:03:38 by akhastaf         ###   ########.fr       */
+/*   Updated: 2020/11/09 19:58:23 by akhastaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	treat_m(char *element)
 		free(temp);
 		g_game.map.map[g_game.map.h] = ft_strdup(element);
 		g_game.map.h += 1;
-		g_game.map.w = BIGGER(ft_strlen(element), g_game.map.w);
+		g_game.map.w = BIGGER((int)ft_strlen(element), g_game.map.w);
 	}
 }
 

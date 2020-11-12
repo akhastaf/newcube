@@ -6,11 +6,12 @@
 /*   By: akhastaf <akhastaf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 13:20:32 by akhastaf          #+#    #+#             */
-/*   Updated: 2020/11/09 09:07:12 by akhastaf         ###   ########.fr       */
+/*   Updated: 2020/11/12 14:52:24 by akhastaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+#include <stdio.h>
 
 void	get_sp(void)
 {
@@ -51,7 +52,7 @@ void	update_sp(void)
 	while (i < g_game.sp_num)
 	{
 		j = 0;
-		while (j < g_game.sp_num - i)
+		while (j < g_game.sp_num - i - 1)
 		{
 			if (g_game.sp[j].distance < g_game.sp[j + 1].distance)
 			{
@@ -65,9 +66,9 @@ void	update_sp(void)
 	}
 }
 
-void	render_sp(int x, int y, int sp_size, int k)
+void	render_sp(int x, int y, int sp_s, int k)
 {
-	int colors;
+	int c;
 	int i;
 	int j;
 	int x_s;
@@ -75,21 +76,21 @@ void	render_sp(int x, int y, int sp_size, int k)
 
 	init_sprite(k, &x_s, &y_s);
 	i = -1;
-	while (++i < sp_size)
+	while (++i < sp_s)
 	{
 		if (x + i < 0 || x + i > g_game.win_w)
 			continue;
-		if (g_game.sp[k].distance >= g_rays[x + i].dist)
-			continue;
+		if (x + i < g_game.win_w)
+			if (g_game.sp[k].distance >= g_rays[i + x].dist)
+				continue;
 		j = -1;
-		while (++j < sp_size)
+		while (++j < sp_s)
 		{
-			colors = g_game.sp[k].data[x_s * (j * y_s / sp_size) +
-				(i * x_s / sp_size)];
-			if (colors > 0x000000)
+			c = g_game.sp[k].data[x_s * (j * y_s / sp_s) + (i * x_s / sp_s)];
+			if (c > 0x000000)
 				if (((x + i) >= 0 && (x + i) < g_game.win_w) &&
 						((y + j) >= 0 && (y + j) < g_game.win_h))
-					my_mlx_pixel_put(x + i, y + j, colors);
+					my_mlx_pixel_put(x + i, y + j, c);
 		}
 	}
 }

@@ -11,8 +11,10 @@ SRC = ./src/*.c ./src/utils/*.c ./src/load/*.c
 all: $(NAME)
 
 $(NAME):
-	@./compile.sh 2 LCF main.c gcc -o $(NAME) $(SRC) $(DEP) -include malloc.h
-	#@$(C) $(FLAGS) -o $(NAME) $(SRC) $(DEP)
+	@$(C) $(FLAGS) -o $(NAME) main.c $(SRC) $(DEP)
+
+debug:
+	@$(C) $(FLAGS) -o $(NAME) main.c $(SRC) $(DEP) -fsanitize=address
 
 clean:
 	@rm -f $(NAME)
