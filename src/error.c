@@ -6,7 +6,7 @@
 /*   By: akhastaf <akhastaf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 13:20:01 by akhastaf          #+#    #+#             */
-/*   Updated: 2020/11/13 18:41:37 by akhastaf         ###   ########.fr       */
+/*   Updated: 2020/11/13 20:37:24 by akhastaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	load_error(char *str)
 		free(g_file.line);
 		while ((gnl(g_file.fd, &g_file.line)) > 0)
 			free(g_file.line);
-		gnl(g_file.fd, &g_file.line);
 		free(g_file.line);
 		close(g_file.fd);
 	}

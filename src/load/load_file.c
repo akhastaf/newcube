@@ -6,7 +6,7 @@
 /*   By: akhastaf <akhastaf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 11:57:37 by akhastaf          #+#    #+#             */
-/*   Updated: 2020/11/13 18:37:16 by akhastaf         ###   ########.fr       */
+/*   Updated: 2020/11/13 20:31:23 by akhastaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	load_file(char *path)
 
 	tozero_tkn();
 	if (!ft_strnstr(path, ".cub", ft_strlen(path)))
-		load_error("Error\nThe filetype isn't <cub>");
+		write_exit("Error\nThe filetype isn't <cub>");
 	if ((g_file.fd = open(path, O_RDONLY)) == -1)
 	{
 		write(1, "Error\n", 6);
