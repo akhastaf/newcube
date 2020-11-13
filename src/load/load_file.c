@@ -6,7 +6,7 @@
 /*   By: akhastaf <akhastaf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 11:57:37 by akhastaf          #+#    #+#             */
-/*   Updated: 2020/11/09 08:58:22 by akhastaf         ###   ########.fr       */
+/*   Updated: 2020/11/13 18:37:16 by akhastaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	tozero_tkn(void)
 	g_tkn.sp = 0;
 	g_tkn.ray = 0;
 	g_tkn.img = 0;
+	g_tkn.l = 0;
 }
 
 void	treat_element(char *element)
@@ -63,8 +64,13 @@ int		empty_line(char *line)
 
 	i = 0;
 	while (line[i])
-		if (line[i] != ' ' || line[i] != '\t')
+	{
+		if (line[i] != ' ' && line[i] != '\t')
 			return (0);
+		i++;
+	}
+	if (g_tkn.map)
+		return (0);
 	if (g_tkn.map == 1)
 		load_error("Error\nMap should be the last Element in the <cub> file");
 	return (1);
@@ -85,28 +91,29 @@ void	fill_spaces(char *str, int s, int e)
 
 void	load_file(char *path)
 {
-	int		fd;
-	char	*line;
 	int		r;
 
+	tozero_tkn();
 	if (!ft_strnstr(path, ".cub", ft_strlen(path)))
 		load_error("Error\nThe filetype isn't <cub>");
-	if ((fd = open(path, O_RDONLY)) == -1)
+	if ((g_file.fd = open(path, O_RDONLY)) == -1)
 	{
 		write(1, "Error\n", 6);
 		write_exit(strerror(errno));
 	}
 	g_game.map.map = 0;
-	while ((r = gnl(fd, &line)) >= 0)
+	while ((r = gnl(g_file.fd, &g_file.line)) >= 0)
 	{
-		if (!empty_line(line))
-			treat_element(line);
-		free(line);
+		if (!empty_line(g_file.line))
+			treat_element(g_file.line);
+		free(g_file.line);
 		if (r == 0)
 			break ;
 	}
+	g_tkn.l = 1;
 	adjust_map();
 	verify_map();
 	verify_player();
 	get_player();
+	close(g_file.fd);
 }

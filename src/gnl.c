@@ -6,7 +6,7 @@
 /*   By: akhastaf <akhastaf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 11:56:03 by akhastaf          #+#    #+#             */
-/*   Updated: 2020/11/05 13:59:35 by akhastaf         ###   ########.fr       */
+/*   Updated: 2020/11/13 14:19:57 by akhastaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,6 @@ int		gnl(int fd, char **line)
 		str = NULL;
 		return (0);
 	}
-	*line = ft_strdup("");
+	*line = ft_strndup("", 1);
 	return (0);
 }

@@ -6,12 +6,18 @@
 /*   By: akhastaf <akhastaf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 12:07:25 by akhastaf          #+#    #+#             */
-/*   Updated: 2020/11/12 14:47:42 by akhastaf         ###   ########.fr       */
+/*   Updated: 2020/11/13 18:39:15 by akhastaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
+
+typedef struct	s_file
+{
+	char		*line;
+	int			fd;
+}				t_file;
 
 typedef struct	s_pos
 {
@@ -66,6 +72,7 @@ typedef struct	s_tkn
 	char		win;
 	char		mlx;
 	char		img;
+	char		l;
 }				t_tkn;
 
 typedef struct	s_color

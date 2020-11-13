@@ -6,7 +6,7 @@
 /*   By: akhastaf <akhastaf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 12:04:22 by akhastaf          #+#    #+#             */
-/*   Updated: 2020/11/12 14:52:39 by akhastaf         ###   ########.fr       */
+/*   Updated: 2020/11/13 18:38:39 by akhastaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include "structs.h"
 # include "utils.h"
 # include "key.h"
+# include "../malloc.h"
 
 # define BUFFER_SIZE 32
 # define MAX_INT 2147483647
@@ -47,6 +48,7 @@ t_ray		*g_rays;
 t_inter		g_horz;
 t_inter		g_vert;
 t_tkn		g_tkn;
+t_file		g_file;
 
 void		init(void);
 int			exit_game(void);
